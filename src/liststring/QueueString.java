@@ -65,4 +65,15 @@ public class QueueString {
 
         return tail;
     }
+
+    @Override
+    public String toString() {
+        String string = "";
+        NodeString q = head;
+        while (q != null) {
+            string += q.getData();
+            q = q.getNext();
+        }
+        return string;
+    }
 }

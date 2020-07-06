@@ -1,9 +1,10 @@
 package liststring;
 
 public class NodeString {
+
     private String data;
     private NodeString next;
-    
+
     public NodeString(String info) {
         this.data = info;
         this.next = null;
@@ -25,4 +26,3 @@ public class NodeString {
         this.next = next;
     }
 }
-

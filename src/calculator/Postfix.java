@@ -11,39 +11,38 @@ public class Postfix {
         QueueString postfix = new QueueString();
         PileString temp = new PileString();
         String number = "";
-        
-        
+
         temp.push("(");
         for (int i = 0; i < infix.length(); i++) {
             char ch = infix.charAt(i);
             switch (ch) {
                 case '(':
-                    if(!number.equals("")) {
+                    if (!number.equals("")) {
                         postfix.add(number);
-                        number="";
+                        number = "";
                     }
-                    temp.push(ch+"");
+                    temp.push(ch + "");
                     break;
                 case '+':
                 case '-':
                 case '^':
                 case '*':
                 case '/':
-                    if(!number.equals("")) {
+                    if (!number.equals("")) {
                         postfix.add(number);
-                        number="";
+                        number = "";
                     }
-                    
-                    while (priority(ch+"") <= priority(temp.nextPop())) {
-                        
+
+                    while (priority(ch + "") <= priority(temp.nextPop())) {
+
                         postfix.add(temp.pop());
                     }
-                    temp.push(ch+"");
+                    temp.push(ch + "");
                     break;
                 case ')':
-                    if(!number.equals("")) {
+                    if (!number.equals("")) {
                         postfix.add(number);
-                        number="";
+                        number = "";
                     }
                     while (!temp.nextPop().equals("(")) {
                         postfix.add(temp.pop());
@@ -51,7 +50,7 @@ public class Postfix {
                     temp.pop();
                     break;
                 default:
-                    number +=ch;
+                    number += ch;
             }
         }
 
