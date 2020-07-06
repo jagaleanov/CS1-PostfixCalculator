@@ -17,24 +17,24 @@ public class GUI extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        txtIn = new javax.swing.JTextField();
+        btnStart = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
-        area = new javax.swing.JTextArea();
+        areaOut = new javax.swing.JTextArea();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("Convertir y calcular");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnStart.setText("Convertir y calcular");
+        btnStart.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnStartActionPerformed(evt);
             }
         });
 
-        area.setColumns(20);
-        area.setRows(5);
-        jScrollPane3.setViewportView(area);
+        areaOut.setColumns(20);
+        areaOut.setRows(5);
+        jScrollPane3.setViewportView(areaOut);
 
         jLabel1.setText("Ingrese una expresión en infijo");
 
@@ -48,10 +48,10 @@ public class GUI extends javax.swing.JFrame {
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 430, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField1)
+                            .addComponent(txtIn)
                             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1)))
+                        .addComponent(btnStart)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -62,8 +62,8 @@ public class GUI extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(txtIn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnStart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
                 .addContainerGap())
@@ -72,15 +72,15 @@ public class GUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartActionPerformed
         Postfix postfixConverter = new Postfix();
-        QueueString postfix = postfixConverter.toPostfix(jTextField1.getText());
-        area.append("El postfijo es " + postfix.toString() + "\n");
+        QueueString postfix = postfixConverter.toPostfix(txtIn.getText());
+        areaOut.append("El postfijo es " + postfix.toString() + "\n");
 
         Operator operator = new Operator();
         Double result = operator.operate(postfix);
-        area.append("El resultado es " + result + "\n");
-    }//GEN-LAST:event_jButton1ActionPerformed
+        areaOut.append("El resultado es " + result + "\n");
+    }//GEN-LAST:event_btnStartActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -116,11 +116,11 @@ public class GUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JTextArea area;
-    public javax.swing.JButton jButton1;
+    public javax.swing.JTextArea areaOut;
+    public javax.swing.JButton btnStart;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    public javax.swing.JTextField jTextField1;
+    public javax.swing.JTextField txtIn;
     // End of variables declaration//GEN-END:variables
 }
