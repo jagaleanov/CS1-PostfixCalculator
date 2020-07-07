@@ -40,7 +40,7 @@ public class Postfix {
                     }
                     temp.push(ch + "");//e ingresa la division en la pila temporal
                     break;
-                case ')'://si es el cierre del parentesis
+                case ')'://si es parentesis final
                     if (!number.equals("")) {//si hay operando almacenado en el string 
                         postfix.add(number);//se envian a la cola final
                         number = "";//y se limpia el string
@@ -51,7 +51,7 @@ public class Postfix {
                     temp.pop();
                     break;
                 default:
-                    number += ch;//si es un operando concatenarlo en el string de numero hasta tenerlo completo
+                    number += ch;//si es un operando concatenarlo en el string de número hasta tenerlo completo
             }
         }
 
