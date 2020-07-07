@@ -8,49 +8,50 @@ public class Postfix {
     public QueueString toPostfix(String infix) {
 
         infix += ')';
-        QueueString postfix = new QueueString();
-        PileString temp = new PileString();
-        String number = "";
+        QueueString postfix = new QueueString();//cola que almacenara el resultado final
+        PileString temp = new PileString();//pila temporal
+        String number = "";//string q almacena temporalmente los operandos y permite
+        //operar numeros de varios digitos o reales
 
         temp.push("(");
-        for (int i = 0; i < infix.length(); i++) {
+        for (int i = 0; i < infix.length(); i++) {//por cada caracter en el string
             char ch = infix.charAt(i);
-            switch (ch) {
-                case '(':
-                    if (!number.equals("")) {
-                        postfix.add(number);
-                        number = "";
+            switch (ch) {//segun el caracter
+                case '('://si es parentesis inicial
+                    if (!number.equals("")) {//si hay operando almacenado en el string 
+                        postfix.add(number);//se envian a la cola final
+                        number = "";//y se limpia el string
                     }
-                    temp.push(ch + "");
+                    temp.push(ch + "");//se añade el caracter en la pila temporal
                     break;
                 case '+':
                 case '-':
                 case '^':
                 case '*':
-                case '/':
-                    if (!number.equals("")) {
-                        postfix.add(number);
-                        number = "";
+                case '/'://si es cualquier operador
+                    if (!number.equals("")) {//si hay operando almacenado en el string 
+                        postfix.add(number);//se envian a la cola final
+                        number = "";//y se limpia el string
                     }
 
                     while (priority(ch + "") <= priority(temp.nextPop())) {
-
-                        postfix.add(temp.pop());
+                        //mientras el operando en el caracter tenga menor prioridad que los operandos en la pila temporal
+                        postfix.add(temp.pop());//lleve los operandos de la pila temporal a la cola final
                     }
-                    temp.push(ch + "");
+                    temp.push(ch + "");//e ingresa la division en la pila temporal
                     break;
-                case ')':
-                    if (!number.equals("")) {
-                        postfix.add(number);
-                        number = "";
+                case ')'://si es el cierre del parentesis
+                    if (!number.equals("")) {//si hay operando almacenado en el string 
+                        postfix.add(number);//se envian a la cola final
+                        number = "";//y se limpia el string
                     }
-                    while (!temp.nextPop().equals("(")) {
-                        postfix.add(temp.pop());
+                    while (!temp.nextPop().equals("(")) {//mientras no encuentre otreo parentesis anidado
+                        postfix.add(temp.pop());//llevar los operadores de la pila temporal a la cola real
                     }
                     temp.pop();
                     break;
                 default:
-                    number += ch;
+                    number += ch;//si es un operando concatenarlo en el string de numero hasta tenerlo completo
             }
         }
 
